@@ -1,4 +1,4 @@
-﻿// T4 code generation is enabled for model 'E:\Spring2019\PRC391\Project\ShoesShopAPI\DatabaseService\Entities\DBService.edmx'. 
+﻿// T4 code generation is enabled for model 'E:\Spring2019\PRC391\Project\Web_API_github\ShoesShopAPI\DatabaseService\Entities\DBService.edmx'. 
 // To enable legacy code generation, change the value of the 'Code Generation Strategy' designer
 // property to 'Legacy ObjectContext'. This property is available in the Properties Window when the model
 // is open in the designer.

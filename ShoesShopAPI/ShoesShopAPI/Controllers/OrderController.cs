@@ -59,7 +59,7 @@ namespace ShoesShopAPI.Controllers
                             {
                                 foreach (var item in orderDetaiList)
                                 {
-                                    int productSkuID = item.ProductID;
+                                    int productSkuID = item.ProductSkuID;
                                     ProductSku productSku = productSkuRepository.Find(p => p.ID == productSkuID);
                                     double size = productSku.Size.Value;
 
@@ -70,7 +70,7 @@ namespace ShoesShopAPI.Controllers
                                     string imageURL = imageRepository.All().Where(p => p.ProductID == parentProId).First().PicURL.ToString();
 
                                     OrderDetailViewModel orderDetail = new OrderDetailViewModel();
-                                    orderDetail.ProductID = parentProId;
+                                    orderDetail.ProductSkuID = productSkuID;
                                     orderDetail.imageURL = imageURL;
                                     orderDetail.Name = name;
                                     orderDetail.Size = size;
@@ -149,7 +149,7 @@ namespace ShoesShopAPI.Controllers
                     order.ShippingFee = 0;
                     if (orderViewModel.PaymentType == "CASH")
                     {
-                        order.Payment = "Cash on Delivery";
+                        order.Payment = "COD";
                     }
                     else
                     {
@@ -166,7 +166,7 @@ namespace ShoesShopAPI.Controllers
                     {
                         OrderDetail orderDetail = new OrderDetail();
                         orderDetail.OrderID = insertedOrder.ID;
-                        orderDetail.ProductID = item.ProductID;
+                        orderDetail.ProductSkuID = item.ProductSkuID;
                         orderDetail.Quantity = item.Quantity;
                         orderDetail.UnitPrice = item.UnitPrice;
 

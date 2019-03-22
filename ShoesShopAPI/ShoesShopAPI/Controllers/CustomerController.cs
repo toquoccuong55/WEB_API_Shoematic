@@ -23,39 +23,19 @@ namespace ShoesShopAPI.Controllers
     public class CustomerController : ApiController
     {
         CustomerRepository customerRepository = new CustomerRepository();
-
-        [System.Web.Mvc.HttpGet]
-        public JSONFormat<List<Customer>> Get()
-        {
-
-            var customers = customerRepository.All().ToList();
-
-            JSONFormat<List<Customer>> result = new JSONFormat<List<Customer>>
-            {
-                status = new Status
-                {
-                    success = true,
-                    message = ConstantManager.MES_LOGIN_SUCCESS,
-                    status = ConstantManager.STATUS_SUCCESS
-                },
-                data = customers
-            };
-
-            return result;
-        }
-
+        
         [System.Web.Mvc.HttpPost]
         [System.Web.Mvc.ActionName("loginByPhone")]
         public JSONFormat<CustomerViewModel> LoginByPhone([FromBody]LoginViewModel loginModel)
         {
             JSONFormat<CustomerViewModel> result;
-            var customerInfoJson = getPhoneFromFacebook(loginModel.accessToken);
+            var customerInfoJson = GetPhoneFromFacebook(loginModel.accessToken);
             try
             {
-                var parObject = JObject.Parse(customerInfoJson);
+                var parsedObject = JObject.Parse(customerInfoJson);
 
-                var phone = parObject["phone"]["number"].ToString();
-                var id = parObject["id"].ToString();
+                var phone = parsedObject["phone"]["number"].ToString();
+                var id = parsedObject["id"].ToString();
 
                 Customer existedCustomer = customerRepository.Find(c => c.ID == id);
                 CustomerViewModel customerModel = null;
@@ -124,7 +104,7 @@ namespace ShoesShopAPI.Controllers
             return result;
         }
 
-        private string getPhoneFromFacebook(string accessToken)
+        private string GetPhoneFromFacebook(string accessToken)
         {
             string fbclid = "IwAR3hJcRIbxSyBU6b_ZA3vLAycQ_FwpISrc6AFCmckJJE8v0hCpZ_cLYKo_I";
             string url = "https://graph.accountkit.com/v1.3/me/?access_token=" +

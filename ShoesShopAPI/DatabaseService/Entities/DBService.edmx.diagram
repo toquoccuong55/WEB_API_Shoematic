@@ -5,22 +5,27 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="61cd0d001aa64fee83e94e29dc953f8f" Name="Diagram1" ZoomLevel="74">
-        <EntityTypeShape EntityType="ShoesShopModel.Category" Width="1.5" PointX="0.75" PointY="6.375" />
-        <EntityTypeShape EntityType="ShoesShopModel.Customer" Width="1.5" PointX="3.75" PointY="1.125" />
-        <EntityTypeShape EntityType="ShoesShopModel.Employee" Width="1.5" PointX="10" PointY="10" />
-        <EntityTypeShape EntityType="ShoesShopModel.OrderDetail" Width="1.5" PointX="8.25" PointY="6" />
-        <EntityTypeShape EntityType="ShoesShopModel.Order" Width="1.5" PointX="6" PointY="0.75" />
-        <EntityTypeShape EntityType="ShoesShopModel.ProductImage" Width="1.5" PointX="5.25" PointY="4.875" />
-        <EntityTypeShape EntityType="ShoesShopModel.Product" Width="1.5" PointX="3" PointY="5.75" />
-        <EntityTypeShape EntityType="ShoesShopModel.ProductSku" Width="1.5" PointX="5.25" PointY="10.5" />
-        <EntityTypeShape EntityType="ShoesShopModel.Store" Width="1.5" PointX="7.75" PointY="10.25" />
+        <EntityTypeShape EntityType="ShoesShopModel.C__MigrationHistory" Width="1.5" PointX="7.75" PointY="0.75" />
+        <EntityTypeShape EntityType="ShoesShopModel.AspNetRole" Width="1.5" PointX="7.75" PointY="8.5" />
+        <EntityTypeShape EntityType="ShoesShopModel.AspNetUserClaim" Width="1.5" PointX="12.25" PointY="7" />
+        <EntityTypeShape EntityType="ShoesShopModel.AspNetUserLogin" Width="1.5" PointX="12.25" PointY="9.75" />
+        <EntityTypeShape EntityType="ShoesShopModel.AspNetUser" Width="1.5" PointX="10" PointY="7.375" />
+        <EntityTypeShape EntityType="ShoesShopModel.Category" Width="1.5" PointX="0.75" PointY="2.625" />
+        <EntityTypeShape EntityType="ShoesShopModel.Customer" Width="1.5" PointX="3" PointY="7.75" />
+        <EntityTypeShape EntityType="ShoesShopModel.OrderDetail" Width="1.5" PointX="7.5" PointY="3.625" />
+        <EntityTypeShape EntityType="ShoesShopModel.Order" Width="1.5" PointX="5.25" PointY="7.375" />
+        <EntityTypeShape EntityType="ShoesShopModel.ProductImage" Width="1.5" PointX="5.25" PointY="1.125" />
+        <EntityTypeShape EntityType="ShoesShopModel.Product" Width="1.5" PointX="3" PointY="2.25" />
+        <EntityTypeShape EntityType="ShoesShopModel.ProductSku" Width="1.5" PointX="5.25" PointY="3.625" />
+        <AssociationConnector Association="ShoesShopModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" />
+        <AssociationConnector Association="ShoesShopModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" />
         <AssociationConnector Association="ShoesShopModel.FK_Product_ProductCategory1" />
         <AssociationConnector Association="ShoesShopModel.FK_Orders_Customers" />
-        <AssociationConnector Association="ShoesShopModel.FK_Employee_Store" />
         <AssociationConnector Association="ShoesShopModel.FK_OrderDetail_Orders" />
-        <AssociationConnector Association="ShoesShopModel.FK_OrderDetail_Product1" />
+        <AssociationConnector Association="ShoesShopModel.FK_OrderDetails_ProductSkus" />
         <AssociationConnector Association="ShoesShopModel.FK_ProductImages_Products" />
         <AssociationConnector Association="ShoesShopModel.FK_ProductSku_Product" />
+        <AssociationConnector Association="ShoesShopModel.AspNetUserRoles" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

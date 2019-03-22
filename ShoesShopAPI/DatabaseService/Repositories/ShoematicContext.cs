@@ -9,6 +9,15 @@ public class ShoematicContext : DbContext
     //}
     public ShoematicContext() : base("DBService") { }
     public DbSet<Customer> Customers { get; set; }
-    public DbSet<Employee> Employees { get; set; }
     public DbSet<Product> Products { get; set; }
+
+    public System.Data.Entity.DbSet<DatabaseService.Entities.Category> Categories { get; set; }
+
+    public System.Data.Entity.DbSet<DatabaseService.Entities.ProductImage> ProductImages { get; set; }
+
+    public System.Data.Entity.DbSet<DatabaseService.Entities.ProductSku> ProductSkus { get; set; }
+
+    public System.Data.Entity.DbSet<DatabaseService.Entities.Order> Orders { get; set; }
+
+    public System.Data.Entity.DbSet<DatabaseService.Entities.OrderDetail> OrderDetails { get; set; }
 }

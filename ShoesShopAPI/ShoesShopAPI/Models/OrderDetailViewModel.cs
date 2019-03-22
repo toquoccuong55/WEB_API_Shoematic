@@ -7,7 +7,7 @@ namespace ShoesShopAPI.Models
 {
     public class OrderDetailViewModel
     {
-        public int ProductID { get; set; }
+        public int ProductSkuID { get; set; }
         public int Quantity { get; set; }
         public double UnitPrice { get; set; }
 

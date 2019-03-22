@@ -88,10 +88,25 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Entities\AspNetRole.cs">
+      <DependentUpon>DBService.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\AspNetUser.cs">
+      <DependentUpon>DBService.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\AspNetUserClaim.cs">
+      <DependentUpon>DBService.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\AspNetUserLogin.cs">
+      <DependentUpon>DBService.tt</DependentUpon>
+    </Compile>
     <Compile Include="Entities\Category.cs">
       <DependentUpon>DBService.tt</DependentUpon>
     </Compile>
     <Compile Include="Entities\Customer.cs">
+      <DependentUpon>DBService.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\C__MigrationHistory.cs">
       <DependentUpon>DBService.tt</DependentUpon>
     </Compile>
     <Compile Include="Entities\DBService.Context.cs">
@@ -109,9 +124,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DBService.tt</DependentUpon>
     </Compile>
-    <Compile Include="Entities\Employee.cs">
-      <DependentUpon>DBService.tt</DependentUpon>
-    </Compile>
     <Compile Include="Entities\Order.cs">
       <DependentUpon>DBService.tt</DependentUpon>
     </Compile>
@@ -125,9 +137,6 @@
       <DependentUpon>DBService.tt</DependentUpon>
     </Compile>
     <Compile Include="Entities\ProductSku.cs">
-      <DependentUpon>DBService.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Entities\Store.cs">
       <DependentUpon>DBService.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />

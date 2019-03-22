@@ -17,7 +17,6 @@ namespace DatabaseService.Entities
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Product()
         {
-            this.OrderDetails = new HashSet<OrderDetail>();
             this.ProductImages = new HashSet<ProductImage>();
             this.ProductSkus = new HashSet<ProductSku>();
         }
@@ -25,13 +24,10 @@ namespace DatabaseService.Entities
         public int ID { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
-        public Nullable<double> UnitPrice { get; set; }
-        public Nullable<bool> Active { get; set; }
         public Nullable<int> CategoryID { get; set; }
+        public Nullable<bool> Active { get; set; }
     
         public virtual Category Category { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<OrderDetail> OrderDetails { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ProductImage> ProductImages { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

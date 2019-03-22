@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShoesShopAPI", "ShoesShopAP
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DatabaseService", "DatabaseService\DatabaseService.csproj", "{9BF538D0-2DE5-4E30-BFEA-4DA1799C0E3A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebAdmin", "WebAdmin\WebAdmin.csproj", "{90BCCC3E-5A52-4691-84C0-8EADB4ACF0DF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{9BF538D0-2DE5-4E30-BFEA-4DA1799C0E3A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9BF538D0-2DE5-4E30-BFEA-4DA1799C0E3A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9BF538D0-2DE5-4E30-BFEA-4DA1799C0E3A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{90BCCC3E-5A52-4691-84C0-8EADB4ACF0DF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{90BCCC3E-5A52-4691-84C0-8EADB4ACF0DF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{90BCCC3E-5A52-4691-84C0-8EADB4ACF0DF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{90BCCC3E-5A52-4691-84C0-8EADB4ACF0DF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

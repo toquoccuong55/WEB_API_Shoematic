@@ -31,7 +31,7 @@ namespace ShoesShopAPI.Controllers
             try
             {
                 //get all cateogories
-                var categories = categoryRepository.All().ToList();
+                var categories = categoryRepository.All().Where(c => c.Active == true).ToList();
                 for (int i = 0; i < categories.Count; i++)
                 {
                     int cateID = categories[i].ID;
@@ -82,7 +82,6 @@ namespace ShoesShopAPI.Controllers
                                     Name = products[j].Name,
                                     Description = products[j].Description,
                                     imageList = imageList,
-                                    UnitPrice = products[j].UnitPrice,
                                     ProductSkus = proSkus
                                 });
                             }//end if productSkus
