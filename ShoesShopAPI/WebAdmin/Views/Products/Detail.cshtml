@@ -2,13 +2,17 @@
 
 @{
     ViewBag.Title = "Detail";
+    ViewBag.ProductID = Model.ID;
 }
+<p>
+    @Html.ActionLink("Back to product list", "Index")
+</p>
 
-<h2>Detail</h2>
+<h2>Product Detail</h2>
 
 <div>
     <hr />
-    <h4>Product</h4>
+    <h4>@Html.ActionLink("Product", "Edit", new { id = Model.ID })</h4>
     <dl class="dl-horizontal">
         <dt>
             @Html.Raw("Product Name")
@@ -46,7 +50,7 @@
 </div>
 <div>
     <hr />
-    <h4>Image  @Html.ActionLink("Detail", "IndexByProductID", "ProductImages", new { id = Model.ID}, null)</h4>
+    <h4>@Html.ActionLink("Image", "IndexByProductID", "ProductImages", new { id = Model.ID }, null)</h4>
     <div>
         @if (Model.ProductImages.Any())
         {
@@ -59,7 +63,7 @@
 </div>
 <div>
     <hr />
-    <h4>Product Sku </h4>
+    <h4>@Html.ActionLink("Product Sku", "IndexByProductID", "ProductSkus", new { id = Model.ID }, null)</h4>
     <div>
         @if (Model.ProductSkus.Any())
         {
@@ -76,7 +80,8 @@
                     {
                         <tr>
                             <td>@sku.Size</td>
-                            <td>@sku.UnitPrice</td>
+
+                            <td>@string.Format("{0:0,0}", @sku.UnitPrice) VND</td>
                             <td>@sku.Active</td>
                         </tr>
                     }
@@ -86,7 +91,3 @@
 
     </div>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>

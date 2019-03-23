@@ -13,16 +13,7 @@ namespace WebAdmin.Controllers
     public class ProductImagesController : Controller
     {
         private ShoematicContext db = new ShoematicContext();
-
-        // GET: ProductImages
-        public ActionResult Index()
-        {
-            var productImages = db.ProductImages.Include(p => p.Product);
-            productImages = productImages.OrderBy(p => p.Product.Name);
-
-            return View(productImages.ToList());
-        }
-
+        
         public ActionResult IndexByProductID(int? id)
         {
             if (id == null)
@@ -35,13 +26,15 @@ namespace WebAdmin.Controllers
                 return HttpNotFound();
             }
             productImages = productImages.OrderBy(p => p.Product.Name);
+            ViewBag.ProductID = id;
             return View(productImages.ToList());
         }
 
         // GET: ProductImages/Create
-        public ActionResult Create()
+        public ActionResult Create(int? id)
         {
-            ViewBag.ProductID = new SelectList(db.Products, "ID", "Name");
+            var product = db.Products.Where(p => p.ID == id);
+            ViewBag.ProductID = new SelectList(product, "ID", "Name");
             return View();
         }
 
@@ -56,10 +49,11 @@ namespace WebAdmin.Controllers
             {
                 db.ProductImages.Add(productImage);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("IndexByProductID", "ProductImages",new { id = productImage.ProductID});
             }
 
-            ViewBag.ProductID = new SelectList(db.Products, "ID", "Name", productImage.ProductID);
+            var product = db.Products.Where(p => p.ID == productImage.ProductID);
+            ViewBag.ProductID = new SelectList(product, "ID", "Name", productImage.ProductID);
             return View(productImage);
         }
 
@@ -75,7 +69,8 @@ namespace WebAdmin.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.ProductID = new SelectList(db.Products, "ID", "Name", productImage.ProductID);
+            var product = db.Products.Where(p => p.ID == productImage.ProductID);
+            ViewBag.ProductID = new SelectList(product, "ID", "Name", productImage.ProductID);
             return View(productImage);
         }
 
@@ -90,9 +85,10 @@ namespace WebAdmin.Controllers
             {
                 db.Entry(productImage).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("IndexByProductID", "ProductImages", new { id = productImage.ProductID });
             }
-            ViewBag.ProductID = new SelectList(db.Products, "ID", "Name", productImage.ProductID);
+            var product = db.Products.Where(p => p.ID == productImage.ProductID);
+            ViewBag.ProductID = new SelectList(product, "ID", "Name", productImage.ProductID);
             return View(productImage);
         }
 
@@ -119,7 +115,7 @@ namespace WebAdmin.Controllers
             ProductImage productImage = db.ProductImages.Find(id);
             db.ProductImages.Remove(productImage);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("IndexByProductID", "ProductImages", new { id = productImage.ProductID});
         }
 
         protected override void Dispose(bool disposing)

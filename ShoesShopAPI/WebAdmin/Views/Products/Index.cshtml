@@ -4,7 +4,7 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>Product</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
@@ -49,7 +49,7 @@
                 @if (images.Any())
                 {
                     string imageURL = images.First().PicURL.ToString();
-                    <img src="@Url.Content(imageURL)" alt="Alternate Text" width="100" height="100" />
+                    <img src="@Url.Content(imageURL)" alt="Alternate Text" width="190" height="100" />
                 }
             </td>
             <td>
@@ -59,8 +59,7 @@
                 @Html.DisplayFor(modelItem => item.Active)
             </td>
             <td>
-                @Html.ActionLink("Detail", "Detail", new { id = item.ID }) |
-                @Html.ActionLink("Edit", "Edit", new { id = item.ID })
+                @Html.ActionLink("Detail", "Detail", new { id = item.ID }) 
             </td>
         </tr>
     }

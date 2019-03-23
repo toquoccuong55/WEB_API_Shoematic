@@ -40,6 +40,7 @@ namespace ShoesShopAPI.Controllers
                     var orderHistoryList = orderRepository.All().Where(p => p.CustomerID == customerId);
                     if (orderHistoryList != null)
                     {
+                        orderHistoryList = orderHistoryList.OrderByDescending(o => o.CreatedDate);
                         foreach (var order in orderHistoryList)
                         {
                             OrderViewModel orderViewModel = new OrderViewModel();

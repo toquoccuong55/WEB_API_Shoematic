@@ -4,12 +4,16 @@
     ViewBag.Title = "Create";
 }
 
-<h2>Create</h2>
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
 
-@using (Html.BeginForm()) 
+<h2>Create new category</h2>
+
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <h4>Category</h4>
         <hr />
@@ -39,7 +43,3 @@
         </div>
     </div>
 }
-
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>

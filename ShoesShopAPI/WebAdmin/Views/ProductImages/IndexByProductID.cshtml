@@ -3,11 +3,14 @@
 @{
     ViewBag.Title = "Index";
 }
+<p>
+    @Html.ActionLink("Back to Product Detail", "Detail", "Products", new { id = ViewBag.ProductID }, null)
+</p>
 
-<h2>Index</h2>
+<h2>Product Image</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Create New", "Create", new { id = ViewBag.ProductID })
 </p>
 <table class="table">
     <tr>

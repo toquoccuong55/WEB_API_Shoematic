@@ -254,10 +254,8 @@
     <Content Include="Views\ProductImages\Create.cshtml" />
     <Content Include="Views\ProductImages\Delete.cshtml" />
     <Content Include="Views\ProductImages\Edit.cshtml" />
-    <Content Include="Views\ProductImages\Index.cshtml" />
     <Content Include="Views\ProductSkus\Create.cshtml" />
     <Content Include="Views\ProductSkus\Edit.cshtml" />
-    <Content Include="Views\ProductSkus\Index.cshtml" />
     <Content Include="Views\Orders\Details.cshtml" />
     <Content Include="Views\Orders\Index.cshtml" />
     <Content Include="Views\OrderDetails\Create.cshtml" />
@@ -270,6 +268,8 @@
     <Content Include="Views\Categories\Create.cshtml" />
     <Content Include="Views\Products\Detail.cshtml" />
     <Content Include="Views\ProductImages\IndexByProductID.cshtml" />
+    <Content Include="Views\ProductSkus\IndexByProductID.cshtml" />
+    <Content Include="Views\ProductSkus\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

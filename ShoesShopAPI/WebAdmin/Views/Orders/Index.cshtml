@@ -4,13 +4,13 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>Order</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
 <table class="table">
     <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ID)
+        </th>
         <th>
             @Html.DisplayNameFor(model => model.Customer.Name)
         </th>
@@ -21,13 +21,13 @@
             @Html.DisplayNameFor(model => model.ShippingAddress)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.ShippingFee)
-        </th>
-        <th>
             @Html.DisplayNameFor(model => model.Payment)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Note)
+        </th>
+        <th>
+            @Html.Raw("Total Amount")
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Status)
@@ -37,44 +37,53 @@
 
     @foreach (var item in Model)
     {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Customer.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CreatedDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ShippingAddress)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ShippingFee)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Payment)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Note)
-            </td>
-            <td>
-                @if (item.Status == 1)
-                {
-                    @Html.Raw("Đang chờ confirm");
-                }
-                else if (item.Status == 2)
-                {
-                    @Html.Raw("Đã thanh toán");
-                }
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.ID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Customer.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CreatedDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ShippingAddress)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Payment)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Note)
+        </td>
+        <td>
+            @{ double totalAmount = 0;}
+            @foreach (var orderDetail in item.OrderDetails)
+            {
+                totalAmount += orderDetail.Quantity * orderDetail.UnitPrice;
+            }
 
-            </td>
-            <td>
-                @if (item.Status == 1)
-                {
-                    @Html.ActionLink("Confirm", "Edit", new { id = item.ID })
-                }|
-                @Html.ActionLink("Details", "Details", new { id = item.ID })
-            </td>
-        </tr>
+            @string.Format("{0:0,0}", totalAmount) VND
+        </td>
+        <td>
+            @if (item.Status == 1)
+            {
+                @Html.Raw("Đang chờ confirm");
+            }
+            else if (item.Status == 2)
+            {
+                @Html.Raw("Đã thanh toán");
+            }
+
+        </td>
+        <td>
+            @if (item.Status == 1)
+            {
+                @Html.ActionLink("Confirm", "Edit", new { id = item.ID })
+            } |
+            @Html.ActionLink("Details", "Details", new { id = item.ID })
+        </td>
+    </tr>
     }
 
 </table>

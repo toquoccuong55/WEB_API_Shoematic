@@ -14,18 +14,30 @@ namespace WebAdmin.Controllers
     {
         private ShoematicContext db = new ShoematicContext();
 
-        // GET: ProductSkus
-        public ActionResult Index()
+        public ActionResult IndexByProductID(int? id)
         {
-            var productSkus = db.ProductSkus.Include(p => p.Product);
-            productSkus = productSkus.OrderBy(p => p.Product.Name);
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            var productSkus = db.ProductSkus.Include(p => p.Product).Where(p => p.ProductID == id);
+            if (productSkus == null)
+            {
+                return HttpNotFound();
+            }
+            ViewBag.ProductID = id;
             return View(productSkus.ToList());
         }
-        
+
         // GET: ProductSkus/Create
-        public ActionResult Create()
+        public ActionResult Create(int? id)
         {
-            ViewBag.ProductID = new SelectList(db.Products, "ID", "Name");
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            var product = db.Products.Where(p => p.ID == id);
+            ViewBag.ProductID = new SelectList(product, "ID", "Name");
             return View();
         }
 
@@ -40,10 +52,10 @@ namespace WebAdmin.Controllers
             {
                 db.ProductSkus.Add(productSku);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("IndexByProductID", "ProductSkus", new { id = productSku.ProductID });
             }
-
-            ViewBag.ProductID = new SelectList(db.Products, "ID", "Name", productSku.ProductID);
+            var product = db.Products.Where(p => p.ID == productSku.ProductID);
+            ViewBag.ProductID = new SelectList(product, "ID", "Name", productSku.ProductID);
             return View(productSku);
         }
 
@@ -59,7 +71,8 @@ namespace WebAdmin.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.ProductID = new SelectList(db.Products, "ID", "Name", productSku.ProductID);
+            var product = db.Products.Where(p => p.ID == productSku.ProductID);
+            ViewBag.ProductID = new SelectList(product, "ID", "Name", productSku.ProductID);
             return View(productSku);
         }
 
@@ -74,12 +87,39 @@ namespace WebAdmin.Controllers
             {
                 db.Entry(productSku).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("IndexByProductID", "ProductSkus", new { id = productSku.ProductID });
             }
-            ViewBag.ProductID = new SelectList(db.Products, "ID", "Name", productSku.ProductID);
+            var product = db.Products.Where(p => p.ID == productSku.ProductID);
+            ViewBag.ProductID = new SelectList(product, "ID", "Name", productSku.ProductID);
             return View(productSku);
         }
-        
+
+        // GET: ProductSkus/Delete/5
+        public ActionResult Delete(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            ProductSku productSku = db.ProductSkus.Find(id);
+            if (productSku == null)
+            {
+                return HttpNotFound();
+            }
+            return View(productSku);
+        }
+
+        // POST: ProductSkus/Delete/5
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteConfirmed(int id)
+        {
+            ProductSku productSku = db.ProductSkus.Find(id);
+            db.ProductSkus.Remove(productSku);
+            db.SaveChanges();
+            return RedirectToAction("IndexByProductID", "ProductSkus", new { id = productSku.ProductID });
+        }
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)

@@ -1,0 +1,54 @@
+﻿@model IEnumerable<DatabaseService.Entities.ProductSku>
+
+<p>
+    @Html.ActionLink("Back to Product Detail", "Detail", "Products", new { id = ViewBag.ProductID }, null)
+</p>
+
+@{
+    ViewBag.Title = "IndexByProductID";
+}
+
+<h2>Product Sku</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create", new { id = ViewBag.ProductID})
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Product.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Size)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UnitPrice)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Active)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Product.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Size)
+        </td>
+        <td>
+            @string.Format("{0:0,0}", item.UnitPrice) VND
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Active)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+        </td>
+    </tr>
+}
+
+</table>
